@@ -106,8 +106,8 @@
 						shouldHide = YES;
 					} else if ([descString isEqualToString:@"识别图片"] && hideSearchImage) {
 						shouldHide = YES;
-					} else if ([descString isEqualToString:@"听抖音"] && hideListenDouyin) {
-						shouldHide = YES;
+          } else if (([descString isEqualToString:@"听抖音"] || [descString isEqualToString:@"后台听"]) && hideListenDouyin) { 
+            shouldHide = YES;
 					} else if ([descString isEqualToString:@"后台播放设置"] && hideBackgroundPlay) {
 						shouldHide = YES;
 					} else if ([descString isEqualToString:@"首页双列快捷入口"] && hideBiserial) {
@@ -875,8 +875,8 @@
 						shouldHide = YES;
 					} else if ([descString isEqualToString:@"自动连播"] && hideAutoPlay) {
 						shouldHide = YES;
-					} else if ([descString isEqualToString:@"识别图片"] && hideSearchImage) {
-						shouldHide = YES;
+          } else if (([descString isEqualToString:@"听抖音"] || [descString isEqualToString:@"后台听"]) && hideListenDouyin) { 
+            shouldHide = YES;
 					} else if ([descString isEqualToString:@"听抖音"] && hideListenDouyin) {
 						shouldHide = YES;
 					} else if ([descString isEqualToString:@"后台播放设置"] && hideBackgroundPlay) {
