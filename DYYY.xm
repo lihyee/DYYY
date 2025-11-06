@@ -1322,12 +1322,12 @@ static NSString *const kDYYYLongPressCopyEnabledKey = @"DYYYLongPressCopyTextEna
     NSString *nameString = nil;
 
     if ([self respondsToSelector:@selector(imageNameString)]) {
-        nameString = self.imageNameString;
+        nameString = [self valueForKey:@"imageNameString"];
     }
 
     NSString *customFileName = DYYYCustomIconFileNameForButtonName(nameString);
     
-    if (customFileName.length > 0) {
+    if (customFileName && customFileName.length > 0) {
         UIImage *customImage = DYYYLoadCustomImage(customFileName, CGSizeMake(44.0, 44.0));
         if (customImage) {
             imageToApply = customImage;
