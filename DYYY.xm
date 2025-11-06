@@ -86,28 +86,15 @@ static NSString *DYYYCustomIconFileNameForButtonName(NSString *nameString) {
     static NSDictionary<NSString *, NSString *> *prefixMapping = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      prefixMapping = @{
-          @"icon_home_like_after" : @"like_after.png",
-          @"icon_home_like_before" : @"like_before.png",
-          @"icon_home_comment" : @"comment.png",
-          @"icon_home_unfavorite" : @"unfavorite.png",
-          @"icon_home_favorite" : @"favorite.png",
-          @"iconHomeShareRight" : @"share.png"
-      };
+        prefixMapping = @{
+            @"icon_home_like_after" : @"like_after.png",
+            @"icon_home_like_before" : @"like_before.png",
+            @"icon_home_comment" : @"comment.png",
+            @"icon_home_unfavorite" : @"unfavorite.png",
+            @"icon_home_favorite" : @"favorite.png",
+            @"iconHomeShareRight" : @"share.png"
+        };
     });
-
-    if ([nameString containsString:@"_comment"]) {
-        return @"comment.png";
-    }
-    if ([nameString containsString:@"_like"]) {
-        return @"like_before.png";
-    }
-    if ([nameString containsString:@"_collect"]) {
-        return @"unfavorite.png";
-    }
-    if ([nameString containsString:@"_share"]) {
-        return @"share.png";
-    }
 
     for (NSString *prefix in prefixMapping) {
         if ([nameString hasPrefix:prefix]) {
@@ -1334,16 +1321,11 @@ static NSString *const kDYYYLongPressCopyEnabledKey = @"DYYYLongPressCopyTextEna
     NSString *nameString = nil;
 
     if ([self respondsToSelector:@selector(imageNameString)]) {
-        IMP imp = [self methodForSelector:@selector(imageNameString)];
-        if (imp) {
-            NSString *(*func)(id, SEL) = (NSString *(*)(id, SEL))imp;
-            if (func) {
-                nameString = func(self, @selector(imageNameString));
-            }
-        }
+        nameString = self.imageNameString;
     }
 
     NSString *customFileName = DYYYCustomIconFileNameForButtonName(nameString);
+    
     if (customFileName.length > 0) {
         UIImage *customImage = DYYYLoadCustomImage(customFileName, CGSizeMake(44.0, 44.0));
         if (customImage) {
